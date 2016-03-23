@@ -1,0 +1,16 @@
+psuedo code for trivia game
+
+make a button (start) that goes to the questions
+
+once you press the start button the questions will append onto the screen.
+
+the trivia question page at the top will have 
+- time remaining (count down)	
+	A. Question (text)
+	B. 4 answers with the ability to click.
+(there will be 5 questions)
+
+once u finish answering all questions you will press the done button which will append the items that will be how many questions you answered incorrectly and the restart button.
+
+
+
