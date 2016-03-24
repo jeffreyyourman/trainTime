@@ -5,7 +5,7 @@ $('#addTrainButton').on('click', function(){
 
     var trainName = $('#trainNameInput').val().trim();
     var destinationInput = $('#destinationInput').val().trim();
-    var timeInput = $('#timeInput').val().trim();
+    var timeInput = moment($('#timeInput').val().trim(), "HH:mm").format("X");
     var frequencyInput = $('#frequencyInput').val().trim();
 
 
@@ -51,20 +51,10 @@ trainData.on('child_added', function(childSnapshot, prevChildKey){
     console.log(frequencyInput);
 
     //prettify the train destination
-    var trainFrequencyPretty = moment();
-    trainFrequencyPretty = moment(timeInput).format('hh:mm');
-    console.log(trainFrequencyPretty);
-    var nextArrival = moment().diff(moment.unix(frequencyInput, 'HH:mm'),"minutes");
-    console.log(nextArrival); 
-    var minutesAway = frequencyInput * nextArrival;
+    var tRemainder = moment().diff(moment.unix(timeInput), "minutes") % frequencyInput;
+    var minutesAway = frequencyInput - tRemainder;
+    var nextArrival = moment().add(minutesAway, "m").format("HH:mm")
 
     $("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destinationInput + "</td><td>" + frequencyInput + "</td><td>"  + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
-
-
-
-
-
-
-
 
 })
